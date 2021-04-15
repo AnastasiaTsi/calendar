@@ -72,6 +72,7 @@ const AddEvent = () => {
       .then((response) => {
         console.log(response);
         dispatch(setList([...list, response.data.return]));
+        setOpen(false);
       })
       .catch((error) => {
         if (error.response) {
