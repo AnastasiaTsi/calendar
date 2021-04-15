@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Calendar from "./components/CalendarView";
 import Grid from "@material-ui/core/Grid";
-import Add from "./components/AddEvent";
+import Add from "./components/AddPanel";
 import { makeStyles } from "@material-ui/core/styles";
-// import { withStyles } from "@material-ui/core/styles";
+import { KEY, BEARER } from "./constants";
+import axios from "axios";
+import { setList } from "./redux/actions/index";
+import { useSelector, useDispatch } from "react-redux";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     backgroundImage: `url(tropical-background.jpg)`,
     minHeight: "100vh",
@@ -14,25 +17,41 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: "center center",
     backgroundRepeat: "no-repeat",
     display: "flex",
-    // alignItems: "center",
     justifyContent: "center",
-    // color: "white",
     textAlign: "center",
   },
 }));
 
-// const StyledGrid = withStyles({
-//   root: {
-//     justifyContent: "space-around",
-//     borderRadius: "65px",
-//     height: "50px",
-//     alignSelf: "center",
-//     alignItems: "center",
-//   },
-// })(Grid);
-
 const App = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    getList();
+  }, []);
+
+  const getList = () => {
+    axios
+      .post(`https://api.corvium.com/api/api/1.0.0/test/events/${KEY}/list`, {
+        headers: {
+          Authorization: `Bearer  ${BEARER}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        dispatch(setList(response.data.return));
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log("Problem With Response ", error.response.status);
+        } else if (error.request) {
+          console.log("Problem With Request ");
+        } else {
+          console.log("we have an error " + error);
+        }
+      });
+  };
+
   return (
     <div className={classes.root}>
       <Grid
