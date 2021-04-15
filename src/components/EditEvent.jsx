@@ -65,8 +65,6 @@ const EditEvent = ({ event }) => {
         }
       )
       .then((response) => {
-        console.log(response.date.return);
-
         const newEvent = response.date.return;
         const newList = list;
 
@@ -80,11 +78,11 @@ const EditEvent = ({ event }) => {
       })
       .catch((error) => {
         if (error.response) {
-          console.log("Problem With Response ", error.response.status);
+          // console.log("Problem With Response ", error.response.status);
         } else if (error.request) {
-          console.log("Problem With Request ");
+          // console.log("Problem With Request ");
         } else {
-          console.log("we have an error - " + error);
+          // console.log("we have an error - " + error);
           /**
            * its updated successfully but keeps on returning error
            */
@@ -97,9 +95,7 @@ const EditEvent = ({ event }) => {
 
           list.map((event, index) => {
             if (event._id === newEvent._id) {
-              console.log("i in");
               newList[index] = newEvent;
-              console.log(newEvent);
             }
           });
           dispatch(setList([...newList]));

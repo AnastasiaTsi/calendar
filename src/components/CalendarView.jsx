@@ -1,19 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
-import { setDate } from "../redux/actions/index";
-import { useDispatch } from "react-redux";
 
 const CalendarView = () => {
-  const dispatch = useDispatch();
   const [value, onChange] = useState(new Date());
-
-  // const date = useSelector((state) => state.date);
-
-  useEffect(() => {
-    dispatch(setDate(value));
-    console.log(value);
-  }, [value]);
 
   return (
     <div>
