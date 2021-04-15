@@ -7,12 +7,56 @@ import {
 } from "../styles";
 import { Grid, Typography, Modal } from "@material-ui/core";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import { BEARER, API, KEY } from "../constants";
+import { useSelector, useDispatch } from "react-redux";
+import { setList } from "../redux/actions";
+import axios from "axios";
 
-const DeleteEvent = () => {
+const DeleteEvent = ({ event }) => {
   const [openDelete, setOpenDelete] = useState(false);
+  const dispatch = useDispatch();
+  const list = useSelector((state) => state.list);
 
   const deleteEvent = () => {
-    console.log("delete");
+    axios
+      .delete(`${API}/api/1.0.0/test/events/${KEY}/${event._id}`, {
+        headers: {
+          Authorization: `Bearer ${BEARER}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.date.return);
+
+        const newList = list;
+
+        list.forEach((listEvent, index) => {
+          if (listEvent._id === event._id) {
+            newList.splice(index, 1);
+            dispatch(setList([...newList]));
+            setOpenDelete(false);
+          }
+        });
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log("Problem With Response ", error.response.status);
+        } else if (error.request) {
+          console.log("Problem With Request ");
+        } else {
+          /**
+           * its deleted successfully but keeps on returning error
+           */
+          console.log("we have an error - " + error);
+          const newList = list;
+          list.forEach((listEvent, index) => {
+            if (listEvent._id === event._id) {
+              newList.splice(index, 1);
+              dispatch(setList([...newList]));
+              setOpenDelete(false);
+            }
+          });
+        }
+      });
   };
 
   return (
