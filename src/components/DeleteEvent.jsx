@@ -25,8 +25,6 @@ const DeleteEvent = ({ event }) => {
         },
       })
       .then((response) => {
-        console.log(response.date.return);
-
         const newList = list;
 
         list.forEach((listEvent, index) => {
@@ -39,14 +37,14 @@ const DeleteEvent = ({ event }) => {
       })
       .catch((error) => {
         if (error.response) {
-          console.log("Problem With Response ", error.response.status);
+          // console.log("Problem With Response ", error.response.status);
         } else if (error.request) {
-          console.log("Problem With Request ");
+          // console.log("Problem With Request ");
         } else {
           /**
            * its deleted successfully but keeps on returning error
            */
-          console.log("we have an error - " + error);
+          // console.log("we have an error - " + error);
           const newList = list;
           list.forEach((listEvent, index) => {
             if (listEvent._id === event._id) {

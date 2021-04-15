@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { StyledButton, StyledBackdrop, PaperModal } from "../styles";
 import { Typography, Modal, Grid, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -48,10 +48,6 @@ const AddEvent = () => {
   const date = useSelector((state) => state.date);
   const list = useSelector((state) => state.list);
 
-  useEffect(() => {
-    console.log(info);
-  }, [info]);
-
   const handleSave = () => {
     if (info.name === "" || info.description === "") return;
     axios
@@ -70,17 +66,16 @@ const AddEvent = () => {
         }
       )
       .then((response) => {
-        console.log(response);
         dispatch(setList([...list, response.data.return]));
         setOpen(false);
       })
       .catch((error) => {
         if (error.response) {
-          console.log("Problem With Response ", error.response.status);
+          // console.log("Problem With Response ", error.response.status);
         } else if (error.request) {
-          console.log("Problem With Request ");
+          // console.log("Problem With Request ");
         } else {
-          console.log("we have an error " + error);
+          // console.log("we have an error " + error);
         }
       });
   };

@@ -48,16 +48,15 @@ const App = () => {
         }
       )
       .then((response) => {
-        console.log(response.data.return.docs);
         dispatch(setList(response.data.return.docs));
       })
       .catch((error) => {
         if (error.response) {
-          console.log("Problem With Response ", error.response.status);
+          // console.log("Problem With Response ", error.response.status);
         } else if (error.request) {
-          console.log("Problem With Request ");
+          // console.log("Problem With Request ");
         } else {
-          console.log("we have an error " + error);
+          // console.log("we have an error " + error);
         }
       });
   };

@@ -4,6 +4,8 @@ import Delete from "./DeleteEvent";
 import Edit from "./EditEvent";
 
 const TextField = ({ event }) => {
+  let date = event.event_date;
+  date = date.substring(0, 10);
   return (
     <>
       <Grid item xs={12} sm={6} lg={3}>
@@ -17,7 +19,7 @@ const TextField = ({ event }) => {
           )}
           {event.event_date && (
             <Typography variant="subtitle2" gutterBottom>
-              {event.event_date}
+              {date}
             </Typography>
           )}
 
