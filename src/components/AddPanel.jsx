@@ -1,7 +1,7 @@
 import React from "react";
 import AddEvent from "./AddEvent";
-import { Typography } from "@material-ui/core";
-
+import { Typography, Card, Grid } from "@material-ui/core";
+import { StyledCard } from "../styles";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
@@ -13,6 +13,7 @@ const useStyles = makeStyles(() => ({
     fontSize: "calc(10px + 2vmin)",
     color: "white",
     textAlign: "center",
+    position: "relative",
   },
 }));
 
@@ -20,10 +21,43 @@ const AddPanel = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Typography variant="h4" gutterBottom>
-        Select a date from the calendar to add a new event
-      </Typography>
-      <AddEvent />
+      <StyledCard
+        style={{
+          backgroundColor: "black",
+          opacity: "0.5",
+        }}
+      >
+        <Grid
+          xs={12}
+          container
+          direction="column"
+          justify="center"
+          alignItems="flex-end"
+        >
+          <Typography variant="h4" gutterBottom>
+            Select a date from the calendar to add a new event
+          </Typography>
+          <AddEvent />
+        </Grid>
+      </StyledCard>
+      <StyledCard
+        style={{
+          backgroundColor: "transparent",
+        }}
+      >
+        <Grid
+          xs={12}
+          container
+          direction="column"
+          justify="center"
+          alignItems="flex-end"
+        >
+          <Typography variant="h4" gutterBottom>
+            Select a date from the calendar to add a new event
+          </Typography>
+          <AddEvent />
+        </Grid>
+      </StyledCard>
     </div>
   );
 };
