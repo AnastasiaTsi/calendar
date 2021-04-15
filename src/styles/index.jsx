@@ -1,5 +1,5 @@
 import { withStyles } from "@material-ui/core/styles";
-import { Button } from "@material-ui/core";
+import { Button, Card } from "@material-ui/core";
 
 // colors
 const primary = "#405363"; //dark blue
@@ -27,3 +27,13 @@ export const StyledButton = withStyles({
     },
   },
 })(Button);
+
+export const StyledCard = withStyles({
+  root: {
+    color: "white",
+    padding: "3%",
+    width: "100%",
+    borderRadius: "25px",
+    position: "absolute",
+  },
+})(Card);

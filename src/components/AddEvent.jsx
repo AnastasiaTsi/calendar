@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledButton } from "../styles/Styles";
+import { StyledButton } from "../styles";
 import { Typography } from "@material-ui/core";
 
 const AddEvent = () => {

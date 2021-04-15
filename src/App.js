@@ -32,14 +32,14 @@ const App = () => {
 
   const getList = () => {
     axios
-      .post(`https://api.corvium.com/api/api/1.0.0/test/events/${KEY}/list`, {
+      .post(`https://api.corvium.com/api/1.0.0/heartbeat`, {
         headers: {
-          Authorization: `Bearer  ${BEARER}`,
+          Authorization: `Bearer ${BEARER}`,
         },
       })
       .then((response) => {
-        console.log(response.data);
-        dispatch(setList(response.data.return));
+        console.log(response);
+        // dispatch(setList(response.data.return));
       })
       .catch((error) => {
         if (error.response) {
@@ -55,7 +55,7 @@ const App = () => {
   return (
     <div className={classes.root}>
       <Grid
-        style={{ margin: "2%" }}
+        style={{ margin: "2%", marginRight: "2%" }}
         container
         direction="column"
         justify="center"
@@ -65,8 +65,8 @@ const App = () => {
         <Grid
           style={{
             textAlign: "-webkit-center",
-            margin: "0px",
-            // backgroundColor: "black",
+            marginBottom: "2%",
+            backgroundColor: "gold",
           }}
           container
           direction="row"
@@ -74,12 +74,7 @@ const App = () => {
           alignItems="center"
           spacing={3}
         >
-          <Grid
-            item
-            justify="center"
-            xs={6}
-            // style={{ backgroundColor: "lavender" }}
-          >
+          <Grid item xs={6} style={{ backgroundColor: "lavender" }}>
             <Calendar />
           </Grid>
           <Grid
@@ -92,7 +87,7 @@ const App = () => {
           </Grid>
         </Grid>
         <Grid
-          // style={{ textAlign: "-webkit-center", backgroundColor: "purple" }}
+          style={{ backgroundColor: "purple" }}
           container
           direction="row"
           justify="center"
