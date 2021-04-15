@@ -1,7 +1,7 @@
 import React from "react";
 import Calendar from "./components/CalendarView";
 import Grid from "@material-ui/core/Grid";
-import Add from "./components/AddEvent";
+import Add from "./components/AddPanel";
 import { makeStyles } from "@material-ui/core/styles";
 // import { withStyles } from "@material-ui/core/styles";
 

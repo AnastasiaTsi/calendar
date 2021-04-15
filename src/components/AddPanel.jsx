@@ -1,12 +1,11 @@
 import React from "react";
-import Calendar from "./CalendarView";
+import { StyledButton } from "../styles/Styles";
 import { Button, Typography } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
-    // backgroundColor: "gold",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -17,16 +16,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddEvent = () => {
+const AddPanel = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <Typography variant="h4" gutterBottom>
         Select a date from the calendar to add a new event
       </Typography>
-      <Button>add new event</Button>
+      <StyledButton>
+        <Typography>Add new event</Typography>
+      </StyledButton>
     </div>
   );
 };
 
-export default AddEvent;
+export default AddPanel;
