@@ -1,17 +1,10 @@
-import React, { useState } from "react";
-import {
-  StyledButton,
-  StyledDelete,
-  StyledBackdrop,
-  PaperModal,
-} from "../styles";
-import { Grid, Paper, Typography, Modal } from "@material-ui/core";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import React from "react";
+import { StyledButton } from "../styles";
+import { Grid, Paper, Typography } from "@material-ui/core";
 import Delete from "./DeleteEvent";
+import Edit from "./EditEvent";
 
 const TextField = ({ name, description, date }) => {
-  const [openDelete, setOpenDelete] = useState(false);
-
   const deleteEvent = () => {
     console.log("delete");
   };
@@ -28,7 +21,7 @@ const TextField = ({ name, description, date }) => {
             {date}
           </Typography>
           <div style={{ textAlign: "right" }}>
-            <StyledButton>edit</StyledButton>
+            <Edit />
             <Delete />
           </div>
         </Paper>

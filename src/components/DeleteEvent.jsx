@@ -8,7 +8,7 @@ import {
 import { Grid, Paper, Typography, Modal } from "@material-ui/core";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
-const DeleteEvent = ({ name, description, date }) => {
+const DeleteEvent = () => {
   const [openDelete, setOpenDelete] = useState(false);
 
   const deleteEvent = () => {
