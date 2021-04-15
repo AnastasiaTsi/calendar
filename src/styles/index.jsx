@@ -4,7 +4,8 @@ import { Button, Card, Backdrop, Paper } from "@material-ui/core";
 // colors
 const primary = "#0b2f21"; //dark green
 const secondary = "#daf6eb"; // light green
-// const red = "#FF5F58"; // delete red
+const red = "#ffbdba"; // delete red
+const darkRed = "#e57772"; //dark red
 
 export const PaperModal = withStyles({
   root: {
@@ -63,3 +64,20 @@ export const StyledBackdrop = withStyles({
     backgroundColor: "rgb(0, 0, 0, 0)",
   },
 })(Backdrop);
+
+export const StyledDelete = withStyles({
+  root: {
+    padding: "10px 26px 10px 26px",
+    border: "solid 1px",
+    backgroundColor: red,
+    borderColor: red,
+    color: "white",
+    textTransform: "none",
+    borderRadius: 65,
+    "&:hover": {
+      backgroundColor: darkRed,
+      boxShadow: "none",
+      color: "white",
+    },
+  },
+})(Button);
