@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { StyledButton, StyledBackdrop, PaperModal } from "../styles";
-import { Typography, Modal, Grid, TextField } from "@material-ui/core";
+import { Grid, TextField, Typography, Modal } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import { BEARER, API, KEY } from "../constants";
@@ -37,19 +37,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddEvent = () => {
+const EditEvent = ({ name, description }) => {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
   const [info, setInfo] = useState({ name: "", description: "" });
 
-  useEffect(() => {
-    console.log(info);
-  }, [info]);
-
-  const handleSave = () => {
+  const handleEdit = () => {
     axios
-      .post(
-        `${API}/api/1.0.0/test/events/${KEY}/new`,
+      .put(
+        `${API}/api/1.0.0/test/events/${KEY}/##event._id`,
         {
           headers: {
             Authorization: `Bearer ${BEARER}`,
@@ -77,13 +73,11 @@ const AddEvent = () => {
 
   return (
     <>
-      <StyledButton onClick={() => setOpen(true)}>
-        <Typography>Add new event</Typography>
-      </StyledButton>
+      <StyledButton onClick={() => setOpenEdit(true)}>edit</StyledButton>
 
       <Modal
-        open={open}
-        onClose={() => setOpen(false)}
+        open={openEdit}
+        onClose={() => setOpenEdit(false)}
         aria-labelledby="simple-modal"
         aria-describedby="simple-modal"
         BackdropComponent={StyledBackdrop}
@@ -100,9 +94,7 @@ const AddEvent = () => {
                 alignItems: "baseline",
               }}
             >
-              <Typography style={{ color: primary }} variant="h4">
-                Add new event
-              </Typography>
+              <Typography variant="h4">Edit event</Typography>
             </Grid>
             <TextField
               className={classes.textField}
@@ -113,6 +105,7 @@ const AddEvent = () => {
               onChange={(e) =>
                 setInfo({ ...info, name: e.target.value.trim() })
               }
+              defaultValue={name}
             />
             <TextField
               className={classes.textField}
@@ -125,6 +118,7 @@ const AddEvent = () => {
               onChange={(e) =>
                 setInfo({ ...info, description: e.target.value.trim() })
               }
+              defaultValue={description}
             />
 
             <Grid
@@ -132,7 +126,7 @@ const AddEvent = () => {
               direction="row"
               style={{ justifyContent: "space-between", padding: "4%" }}
             >
-              <StyledButton onClick={() => handleSave()} endIcon={<DoneIcon />}>
+              <StyledButton onClick={() => handleEdit()} endIcon={<DoneIcon />}>
                 Save
               </StyledButton>
             </Grid>
@@ -143,4 +137,4 @@ const AddEvent = () => {
   );
 };
 
-export default AddEvent;
+export default EditEvent;
