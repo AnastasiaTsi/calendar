@@ -27,6 +27,8 @@ const App = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  const list = useSelector((state) => state.list);
+
   useEffect(() => {
     getList();
   }, []);
@@ -74,7 +76,6 @@ const App = () => {
           style={{
             textAlign: "-webkit-center",
             marginBottom: "2%",
-            // backgroundColor: "gold",
           }}
           container
           direction="row"
@@ -82,70 +83,18 @@ const App = () => {
           alignItems="center"
           spacing={3}
         >
-          <Grid
-            item
-            xs={6}
-            // style={{ backgroundColor: "lavender" }}
-          >
+          <Grid item xs={6}>
             <Calendar />
           </Grid>
-          <Grid
-            item
-            justify="center"
-            xs={6}
-            // style={{ backgroundColor: "pink" }}
-          >
+          <Grid item justify="center" xs={6}>
             <Add />
           </Grid>
         </Grid>
         <Grid container spacing={3}>
-          <EventField
-            name="Visit super market"
-            description="i need to buy some stuff"
-            date="oki doki"
-          />
-          <EventField
-            name="Visit super market"
-            description="i need to buy fffffffffffffff fffffffffffffffffff fffffffffffffffffff fffffffffffffffffff fffffffffffffffffff fffffffffffffffffff fffffffffffffffffff  fffffffffffffffffffsome stuff"
-            date="oki doki"
-          />
-          <EventField
-            name="Visit super market"
-            description="i need to buy some stuff"
-            date="oki doki"
-          />
-
-          <EventField
-            name="Visit super market"
-            description="i need to buy some stuff lorem ipjdha hsg sh ghjd gjad hfgkjad hgjdhfg j gd g gj sdkjfg hjk gfkg hfk gjdsgjsd gjkhdsjk gajdh gakdg agfahur  fhf asudfh ajkh fj fah fajhdf jkdshg kjdkjfhgkjd hdjfhgdjghkrgfhjfhg djsfh jdfhg djsfhgjkdfh ghjkdhfg jkhdfg jkhfdg jkhdfg jkhdfggjkhdfgjkhdfgjkhdfg  dfkjh dfgjkhd fgjkhdfg gkjlhsd fg"
-            date="oki doki"
-          />
-          <EventField
-            name="Visit super market"
-            description="i need to buy some stuff"
-            date="oki doki"
-          />
-          <EventField
-            name="Visit super market"
-            description="i need to buy some stuff lorem ipjdha hsg sh ghjd gjad hfgkjad hgjdhfg j gd g gj sdkjfg hjk gfkg hfk gjdsgjsd gjkhdsjk gajdh gakdg agfahur  fhf asudfh ajkh fj fah fajhdf jkdshg kjdkjfhgkjd hdjfhgdjghkrgfhjfhg djsfh jdfhg djsfhgjkdfh ghjkdhfg jkhdfg jkhfdg jkhdfg jkhdfggjkhdfgjkhdfgjkhdfg  dfkjh dfgjkhd fgjkhdfg gkjlhsd fg"
-            date="oki doki"
-          />
-          <EventField
-            name="Visit super market"
-            description="i need to buy some stuff"
-            date="oki doki"
-          />
-          <EventField
-            name="Visit super market"
-            description="i need to buy fffffffffffffff fffffffffffffffffff fffffffffffffffffff fffffffffffffffffff fffffffffffffffffff fffffffffffffffffff fffffffffffffffffff  fffffffffffffffffffsome stuff"
-            date="oki doki"
-          />
-
-          <EventField
-            name="Visit super market"
-            description="i need to buy some stuff lorem ipjdha hsg sh ghjd gjad hfgkjad hgjdhfg j gd g gj sdkjfg hjk gfkg hfk gjdsgjsd gjkhdsjk gajdh gakdg agfahur  fhf asudfh ajkh fj fah fajhdf jkdshg kjdkjfhgkjd hdjfhgdjghkrgfhjfhg djsfh jdfhg djsfhgjkdfh ghjkdhfg jkhdfg jkhfdg jkhdfg jkhdfggjkhdfgjkhdfgjkhdfg  dfkjh dfgjkhd fgjkhdfg gkjlhsd fg"
-            date="oki doki"
-          />
+          {list &&
+            list.map((event, index) => {
+              return <EventField key={index} event={event} />;
+            })}
         </Grid>
       </Grid>
     </div>
