@@ -1,5 +1,4 @@
 import React from "react";
-import { StyledButton } from "../styles";
 import { Grid, Paper, Typography } from "@material-ui/core";
 import Delete from "./DeleteEvent";
 import Edit from "./EditEvent";
