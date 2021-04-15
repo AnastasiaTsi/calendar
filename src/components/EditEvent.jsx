@@ -85,6 +85,25 @@ const EditEvent = ({ event }) => {
           console.log("Problem With Request ");
         } else {
           console.log("we have an error - " + error);
+          /**
+           * its updated successfully but keeps on returning error
+           */
+          const newEvent = {
+            ...event,
+            event_name: info.name,
+            event_description: info.description,
+          };
+          const newList = list;
+
+          list.map((event, index) => {
+            if (event._id === newEvent._id) {
+              console.log("i in");
+              newList[index] = newEvent;
+              console.log(newEvent);
+            }
+          });
+          dispatch(setList([...newList]));
+          setOpenEdit(false);
         }
       });
   };
