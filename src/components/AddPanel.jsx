@@ -1,6 +1,6 @@
 import React from "react";
 import AddEvent from "./AddEvent";
-import { Typography, Card, Grid } from "@material-ui/core";
+import { Typography, Grid } from "@material-ui/core";
 import { StyledCard } from "../styles";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -24,7 +24,7 @@ const AddPanel = () => {
       <StyledCard
         style={{
           backgroundColor: "black",
-          opacity: "0.5",
+          opacity: "0.7",
         }}
       >
         <Grid
@@ -33,6 +33,7 @@ const AddPanel = () => {
           direction="column"
           justify="center"
           alignItems="flex-end"
+          style={{ alignContent: "center" }}
         >
           <Typography variant="h4" gutterBottom>
             Select a date from the calendar to add a new event
@@ -51,6 +52,7 @@ const AddPanel = () => {
           direction="column"
           justify="center"
           alignItems="flex-end"
+          style={{ alignContent: "center" }}
         >
           <Typography variant="h4" gutterBottom>
             Select a date from the calendar to add a new event

@@ -1,10 +1,28 @@
 import { withStyles } from "@material-ui/core/styles";
-import { Button, Card } from "@material-ui/core";
+import { Button, Card, Backdrop, Paper } from "@material-ui/core";
 
 // colors
-const primary = "#405363"; //dark blue
-const secondary = "#e2f1ed"; // light blue-green from A
-const red = "#FF5F58"; // delete red
+const primary = "#0b2f21"; //dark green
+const secondary = "#daf6eb"; // light green
+// const red = "#FF5F58"; // delete red
+
+export const PaperModal = withStyles({
+  root: {
+    outline: "none",
+    padding: 20,
+    left: 0,
+    top: 0,
+    bottom: 0,
+    right: 0,
+    maxWidth: 450,
+    height: "fit-content",
+    margin: "auto",
+    position: "absolute",
+    overflowY: "auto",
+    overflowX: "hidden",
+    maxHeight: "100%",
+  },
+})(Paper);
 
 export const StyledButton = withStyles({
   root: {
@@ -35,5 +53,13 @@ export const StyledCard = withStyles({
     width: "100%",
     borderRadius: "25px",
     position: "absolute",
+    textAlign: "center",
   },
 })(Card);
+
+export const StyledBackdrop = withStyles({
+  root: {
+    backdropFilter: "blur(7px) !important",
+    backgroundColor: "rgb(0, 0, 0, 0)",
+  },
+})(Backdrop);

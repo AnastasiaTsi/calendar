@@ -8,7 +8,7 @@ const CalendarView = () => {
   const dispatch = useDispatch();
   const [value, onChange] = useState(new Date());
 
-  const date = useSelector((state) => state.date);
+  // const date = useSelector((state) => state.date);
 
   useEffect(() => {
     dispatch(setDate(value));
