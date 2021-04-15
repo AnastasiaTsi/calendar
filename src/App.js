@@ -1,37 +1,89 @@
 import React from "react";
 import Calendar from "./components/CalendarView";
 import Grid from "@material-ui/core/Grid";
-
+import Add from "./components/AddEvent";
 import { makeStyles } from "@material-ui/core/styles";
+// import { withStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: "#282c34",
+    backgroundImage: `url(tropical-background.jpg)`,
     minHeight: "100vh",
+    backgroundSize: "cover",
+    overflow: "hidden",
+    backgroundPosition: "center center",
+    backgroundRepeat: "no-repeat",
     display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    // alignItems: "center",
     justifyContent: "center",
-    fontSize: "calc(10px + 2vmin)",
-    color: "white",
+    // color: "white",
     textAlign: "center",
   },
 }));
+
+// const StyledGrid = withStyles({
+//   root: {
+//     justifyContent: "space-around",
+//     borderRadius: "65px",
+//     height: "50px",
+//     alignSelf: "center",
+//     alignItems: "center",
+//   },
+// })(Grid);
 
 const App = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Grid container direction="column" justify="center" alignItems="center">
-        <Grid container direction="row" justify="center" alignItems="center">
-          <Grid item>
+      <Grid
+        style={{ margin: "2%" }}
+        container
+        direction="column"
+        justify="center"
+        alignItems="center"
+        spacing={3}
+      >
+        <Grid
+          style={{
+            textAlign: "-webkit-center",
+            margin: "0px",
+            // backgroundColor: "black",
+          }}
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+          spacing={3}
+        >
+          <Grid
+            item
+            justify="center"
+            xs={6}
+            // style={{ backgroundColor: "lavender" }}
+          >
             <Calendar />
           </Grid>
-          <Grid item>
+          <Grid
+            item
+            justify="center"
+            xs={6}
+            // style={{ backgroundColor: "pink" }}
+          >
+            <Add />
+          </Grid>
+        </Grid>
+        <Grid
+          // style={{ textAlign: "-webkit-center", backgroundColor: "purple" }}
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+          spacing={3}
+        >
+          <Grid item justify="center">
             <Calendar />
           </Grid>
         </Grid>
-        <Calendar />
       </Grid>
     </div>
   );

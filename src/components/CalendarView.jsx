@@ -17,7 +17,6 @@ const CalendarView = () => {
   return (
     <div>
       <Calendar onChange={onChange} value={value} />
-      <div>date</div>
     </div>
   );
 };
