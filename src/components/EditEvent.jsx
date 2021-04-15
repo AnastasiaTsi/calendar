@@ -3,6 +3,8 @@ import { StyledButton, StyledBackdrop, PaperModal } from "../styles";
 import { Grid, TextField, Typography, Modal } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { setList } from "../redux/actions";
 import { BEARER, API, KEY } from "../constants";
 // -- icons --
 import DoneIcon from "@material-ui/icons/Done";
@@ -37,28 +39,44 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const EditEvent = ({ name, description }) => {
+const EditEvent = ({ event }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [openEdit, setOpenEdit] = useState(false);
-  const [info, setInfo] = useState({ name: "", description: "" });
+  const [info, setInfo] = useState({
+    name: event.event_name,
+    description: event.event_description,
+  });
+  const list = useSelector((state) => state.list);
 
   const handleEdit = () => {
     axios
       .put(
-        `${API}/api/1.0.0/test/events/${KEY}/##event._id`,
+        `${API}/api/1.0.0/test/events/${KEY}/${event._id}`,
+        {
+          event_name: info.name,
+          event_description: info.description,
+          event_date: event.event_date,
+        },
         {
           headers: {
             Authorization: `Bearer ${BEARER}`,
           },
-        },
-        {
-          event_name: info.name,
-          event_description: info.description,
         }
       )
       .then((response) => {
-        console.log(response);
-        // dispatch(setList(response.data.return));
+        console.log(response.date.return);
+
+        const newEvent = response.date.return;
+        const newList = list;
+
+        list.map((event, index) => {
+          if (event._id === newEvent._id) {
+            newList[index] = newEvent;
+          }
+        });
+        dispatch(setList([...newList]));
+        setOpenEdit(false);
       })
       .catch((error) => {
         if (error.response) {
@@ -66,7 +84,7 @@ const EditEvent = ({ name, description }) => {
         } else if (error.request) {
           console.log("Problem With Request ");
         } else {
-          console.log("we have an error " + error);
+          console.log("we have an error - " + error);
         }
       });
   };
@@ -105,7 +123,7 @@ const EditEvent = ({ name, description }) => {
               onChange={(e) =>
                 setInfo({ ...info, name: e.target.value.trim() })
               }
-              defaultValue={name}
+              defaultValue={event.event_name}
             />
             <TextField
               className={classes.textField}
@@ -118,7 +136,7 @@ const EditEvent = ({ name, description }) => {
               onChange={(e) =>
                 setInfo({ ...info, description: e.target.value.trim() })
               }
-              defaultValue={description}
+              defaultValue={event.event_description}
             />
 
             <Grid

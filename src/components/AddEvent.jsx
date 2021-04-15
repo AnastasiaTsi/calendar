@@ -4,6 +4,8 @@ import { Typography, Modal, Grid, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import { BEARER, API, KEY } from "../constants";
+import { useSelector, useDispatch } from "react-redux";
+import { setList } from "../redux/actions";
 // -- icons --
 import DoneIcon from "@material-ui/icons/Done";
 
@@ -39,30 +41,37 @@ const useStyles = makeStyles((theme) => ({
 
 const AddEvent = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const [info, setInfo] = useState({ name: "", description: "" });
+
+  const date = useSelector((state) => state.date);
+  const list = useSelector((state) => state.list);
 
   useEffect(() => {
     console.log(info);
   }, [info]);
 
   const handleSave = () => {
+    if (info.name === "" || info.description === "") return;
     axios
       .post(
         `${API}/api/1.0.0/test/events/${KEY}/new`,
+
+        {
+          event_name: info.name,
+          event_description: info.description,
+          event_date: date,
+        },
         {
           headers: {
             Authorization: `Bearer ${BEARER}`,
           },
-        },
-        {
-          event_name: info.name,
-          event_description: info.description,
         }
       )
       .then((response) => {
         console.log(response);
-        // dispatch(setList(response.data.return));
+        dispatch(setList([...list, response.data.return]));
       })
       .catch((error) => {
         if (error.response) {
