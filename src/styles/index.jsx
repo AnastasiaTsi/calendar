@@ -1,35 +1,10 @@
 import { withStyles } from "@material-ui/core/styles";
-import { Button, Card, Backdrop, Paper, TextField } from "@material-ui/core";
+import { Button, Card, Backdrop, Paper } from "@material-ui/core";
 
 // colors
 const primary = "#0b2f21"; //dark green
 const secondary = "#daf6eb"; // light green
 // const red = "#FF5F58"; // delete red
-
-export const MyTextField = withStyles({
-  paddingBottom: "7%",
-  borderColor: secondary,
-  "& .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-fullWidth.MuiInputBase-formControl": {
-    borderRadius: "50px",
-  },
-  "& label.Mui-focused": {
-    color: primary,
-  },
-  "& .MuiInput-underline:after": {
-    borderBottomColor: primary,
-  },
-  "& .MuiOutlinedInput-root": {
-    "& fieldset": {
-      borderColor: secondary,
-    },
-    "&:hover fieldset": {
-      borderColor: secondary,
-    },
-    "&.Mui-focused fieldset": {
-      borderColor: secondary,
-    },
-  },
-})(TextField);
 
 export const PaperModal = withStyles({
   root: {
