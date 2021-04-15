@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Calendar from "./components/CalendarView";
 import Grid from "@material-ui/core/Grid";
 import Add from "./components/AddPanel";
+import EventField from "./components/EventField";
 import { makeStyles } from "@material-ui/core/styles";
 import { KEY, BEARER } from "./constants";
 import axios from "axios";
@@ -66,7 +67,7 @@ const App = () => {
           style={{
             textAlign: "-webkit-center",
             marginBottom: "2%",
-            backgroundColor: "gold",
+            // backgroundColor: "gold",
           }}
           container
           direction="row"
@@ -74,7 +75,11 @@ const App = () => {
           alignItems="center"
           spacing={3}
         >
-          <Grid item xs={6} style={{ backgroundColor: "lavender" }}>
+          <Grid
+            item
+            xs={6}
+            // style={{ backgroundColor: "lavender" }}
+          >
             <Calendar />
           </Grid>
           <Grid
@@ -94,8 +99,40 @@ const App = () => {
           alignItems="center"
           spacing={3}
         >
-          <Grid item justify="center">
-            <Calendar />
+          <Grid item justify="center" style={{ margin: "1%" }}>
+            <EventField
+              name="Visit super market"
+              description="i need to buy some stuff"
+              date="oki doki"
+            />
+          </Grid>
+          <Grid item justify="center" style={{ margin: "1%" }}>
+            <EventField
+              name="Visit super market"
+              description="i need to buy some stuff"
+              date="oki doki"
+            />
+          </Grid>
+          <Grid item justify="center" style={{ margin: "1%" }}>
+            <EventField
+              name="Visit super market"
+              description="i need to buy some stuff"
+              date="oki doki"
+            />
+          </Grid>
+          <Grid item justify="center" style={{ margin: "1%" }}>
+            <EventField
+              name="Visit super market"
+              description="i need to buy some stuff"
+              date="oki doki"
+            />
+          </Grid>
+          <Grid item justify="center" style={{ margin: "1%" }}>
+            <EventField
+              name="Visit super market"
+              description="i need to buy some stuff"
+              date="oki doki"
+            />
           </Grid>
         </Grid>
       </Grid>
