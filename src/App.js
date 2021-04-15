@@ -4,10 +4,10 @@ import Grid from "@material-ui/core/Grid";
 import Add from "./components/AddPanel";
 import EventField from "./components/EventField";
 import { makeStyles } from "@material-ui/core/styles";
-import { BEARER, API } from "./constants";
+import { BEARER, API, KEY } from "./constants";
 import axios from "axios";
-// import { setList } from "./redux/actions/index";
-// import { useSelector, useDispatch } from "react-redux";
+import { setList } from "./redux/actions/index";
+import { useSelector, useDispatch } from "react-redux";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
 
 const App = () => {
   const classes = useStyles();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getList();
@@ -33,14 +33,21 @@ const App = () => {
 
   const getList = () => {
     axios
-      .post(`${API}/api/1.0.0/heartbeat`, {
-        headers: {
-          Authorization: `Bearer ${BEARER}`,
+      .post(
+        `${API}/api/1.0.0/test/events/${KEY}/list`,
+        {
+          limit: 100,
+          sort: "created_at",
         },
-      })
+        {
+          headers: {
+            Authorization: `Bearer ${BEARER}`,
+          },
+        }
+      )
       .then((response) => {
-        console.log(response);
-        // dispatch(setList(response.data.return));
+        console.log(response.data.return.docs);
+        dispatch(setList(response.data.return.docs));
       })
       .catch((error) => {
         if (error.response) {
