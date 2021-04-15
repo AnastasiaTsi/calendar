@@ -1,6 +1,6 @@
 import React from "react";
-import { StyledButton } from "../styles/Styles";
-import { Button, Typography } from "@material-ui/core";
+import AddEvent from "./AddEvent";
+import { Typography } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -23,9 +23,7 @@ const AddPanel = () => {
       <Typography variant="h4" gutterBottom>
         Select a date from the calendar to add a new event
       </Typography>
-      <StyledButton>
-        <Typography>Add new event</Typography>
-      </StyledButton>
+      <AddEvent />
     </div>
   );
 };

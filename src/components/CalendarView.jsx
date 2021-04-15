@@ -12,6 +12,7 @@ const CalendarView = () => {
 
   useEffect(() => {
     dispatch(setDate(value));
+    console.log(value);
   }, [value]);
 
   return (
