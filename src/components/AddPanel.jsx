@@ -1,6 +1,6 @@
 import React from "react";
 import AddEvent from "./AddEvent";
-import { Typography, Card, Grid } from "@material-ui/core";
+import { Typography, Grid } from "@material-ui/core";
 import { StyledCard } from "../styles";
 import { makeStyles } from "@material-ui/core/styles";
 

@@ -4,10 +4,10 @@ import Grid from "@material-ui/core/Grid";
 import Add from "./components/AddPanel";
 import EventField from "./components/EventField";
 import { makeStyles } from "@material-ui/core/styles";
-import { KEY, BEARER } from "./constants";
+import { BEARER, API } from "./constants";
 import axios from "axios";
-import { setList } from "./redux/actions/index";
-import { useSelector, useDispatch } from "react-redux";
+// import { setList } from "./redux/actions/index";
+// import { useSelector, useDispatch } from "react-redux";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -25,7 +25,7 @@ const useStyles = makeStyles(() => ({
 
 const App = () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   useEffect(() => {
     getList();
@@ -33,7 +33,7 @@ const App = () => {
 
   const getList = () => {
     axios
-      .post(`https://api.corvium.com/api/1.0.0/heartbeat`, {
+      .post(`${API}/api/1.0.0/heartbeat`, {
         headers: {
           Authorization: `Bearer ${BEARER}`,
         },
@@ -91,49 +91,28 @@ const App = () => {
             <Add />
           </Grid>
         </Grid>
-        <Grid
-          style={{ backgroundColor: "purple" }}
-          container
-          direction="row"
-          justify="center"
-          alignItems="center"
-          spacing={3}
-        >
-          <Grid item justify="center" style={{ margin: "1%" }}>
-            <EventField
-              name="Visit super market"
-              description="i need to buy some stuff"
-              date="oki doki"
-            />
-          </Grid>
-          <Grid item justify="center" style={{ margin: "1%" }}>
-            <EventField
-              name="Visit super market"
-              description="i need to buy some stuff"
-              date="oki doki"
-            />
-          </Grid>
-          <Grid item justify="center" style={{ margin: "1%" }}>
-            <EventField
-              name="Visit super market"
-              description="i need to buy some stuff"
-              date="oki doki"
-            />
-          </Grid>
-          <Grid item justify="center" style={{ margin: "1%" }}>
-            <EventField
-              name="Visit super market"
-              description="i need to buy some stuff"
-              date="oki doki"
-            />
-          </Grid>
-          <Grid item justify="center" style={{ margin: "1%" }}>
-            <EventField
-              name="Visit super market"
-              description="i need to buy some stuff"
-              date="oki doki"
-            />
-          </Grid>
+        <Grid container spacing={3}>
+          <EventField
+            name="Visit super market"
+            description="i need to buy some stuff"
+            date="oki doki"
+          />
+          <EventField
+            name="Visit super market"
+            description="i need to buy fffffffffffffff fffffffffffffffffff fffffffffffffffffff fffffffffffffffffff fffffffffffffffffff fffffffffffffffffff fffffffffffffffffff  fffffffffffffffffffsome stuff"
+            date="oki doki"
+          />
+          <EventField
+            name="Visit super market"
+            description="i need to buy some stuff"
+            date="oki doki"
+          />
+
+          <EventField
+            name="Visit super market"
+            description="i need to buy some stuff lorem ipjdha hsg sh ghjd gjad hfgkjad hgjdhfg j gd g gj sdkjfg hjk gfkg hfk gjdsgjsd gjkhdsjk gajdh gakdg agfahur  fhf asudfh ajkh fj fah fajhdf jkdshg kjdkjfhgkjd hdjfhgdjghkrgfhjfhg djsfh jdfhg djsfhgjkdfh ghjkdhfg jkhdfg jkhfdg jkhdfg jkhdfggjkhdfgjkhdfgjkhdfg  dfkjh dfgjkhd fgjkhdfg gkjlhsd fg"
+            date="oki doki"
+          />
         </Grid>
       </Grid>
     </div>

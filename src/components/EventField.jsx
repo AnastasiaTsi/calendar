@@ -4,17 +4,21 @@ import { Grid, Paper, Typography } from "@material-ui/core";
 
 const TweetField = ({ name, description, date }) => {
   return (
-    <Paper style={{ padding: "5%", minWidth: "300px" }}>
-      <Typography style={{ padding: "2%" }} variant="h5" gutterBottom>
-        {name}
-      </Typography>
-      <Typography style={{ padding: "2%" }} gutterBottom>
-        {description}
-      </Typography>
-      <Typography style={{ padding: "2%" }} variant="subtitle2" gutterBottom>
-        {date}
-      </Typography>
-    </Paper>
+    <Grid item xs={12} sm={6} lg={3}>
+      <Paper style={{ padding: "2%", borderRadius: "15px" }}>
+        <Typography variant="h5" gutterBottom style={{ color: "#3d3d3d" }}>
+          {name}
+        </Typography>
+        <Typography gutterBottom>{description}</Typography>
+        <Typography variant="subtitle2" gutterBottom>
+          {date}
+        </Typography>
+        <div style={{ backgroundColor: "green", textAlign: "right" }}>
+          <button>edit</button>
+          <button>delete</button>
+        </div>
+      </Paper>
+    </Grid>
   );
 };
 
